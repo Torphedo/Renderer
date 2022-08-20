@@ -93,11 +93,16 @@ unsigned int CreateShader(const std::string filepath, unsigned int ID)
 
 unsigned int Shader::GetUniformLocation(const char* name)
 {
+    if (m_UniformLocations.find(name) != m_UniformLocations.end())
+    {
+        return m_UniformLocations[name];
+    }
     GLCall(unsigned int location = glGetUniformLocation(m_RendererID, name)); // Get u_Color location
     if (location == -1) // Make sure u_Color can be found
     {
         std::cout << "Warning! Uniform " << name << "doesn't exist or was stripped during compilation!";
     }
+    m_UniformLocations[name] = location;
     return location;
 }
 

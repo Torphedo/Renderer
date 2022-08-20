@@ -71,9 +71,9 @@ int main(void)
         shader.SetUniform4f("u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
 
         va.Unbind(); // Unbind vertex array
-        shader.Unbind(); // Clear program selection
         vb.Unbind(); // Unbind vertex buffer
         ib.Unbind(); // Unbind index buffer
+        shader.Unbind(); // Clear program selection
 
         Vec4f color = { 0.0f, 0.0f, 0.0f, 1.0f };
         float increment = 0.05f;
