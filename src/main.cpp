@@ -68,7 +68,7 @@ int main(void)
         Shader shader("res/shaders/basic.glsl");
         shader.Bind(); // Select shader program
 
-        SetUniform4f(shader, "u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
+        shader.SetUniform4f("u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
 
         va.Unbind(); // Unbind vertex array
         shader.Unbind(); // Clear program selection
@@ -86,7 +86,7 @@ int main(void)
 
             va.Bind(); // Bind vertex array
             shader.Bind(); // Select shader
-            SetUniform4f(shader, "u_Color", color); // Set color uniform
+            shader.SetUniform4f("u_Color", color); // Set color uniform
             vb.Bind(); // Bind vertex buffer
             ib.Bind(); // Bind index buffer
 

@@ -91,9 +91,17 @@ unsigned int CreateShader(const std::string filepath, unsigned int ID)
     return ID;
 }
 
-void SetUniform4f(Shader& shader, const char* name, Vec4f floats)
+unsigned int Shader::GetUniformLocation(const char* name)
 {
-    GLCall(int location = glGetUniformLocation(shader.m_RendererID, name)); // Get u_Color location
-    ASSERT(location != -1); // Make sure u_Color can be found
-    GLCall(glUniform4f(location, floats.f1, floats.f2, floats.f3, floats.f4)); // Set color uniform
+    GLCall(unsigned int location = glGetUniformLocation(m_RendererID, name)); // Get u_Color location
+    if (location == -1) // Make sure u_Color can be found
+    {
+        std::cout << "Warning! Uniform " << name << "doesn't exist or was stripped during compilation!";
+    }
+    return location;
+}
+
+void Shader::SetUniform4f(const char* name, Vec4f floats)
+{
+    GLCall(glUniform4f(glGetUniformLocation(m_RendererID, name), floats.f1, floats.f2, floats.f3, floats.f4)); // Set color uniform
 }

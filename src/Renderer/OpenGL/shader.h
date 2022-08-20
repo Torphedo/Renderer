@@ -28,6 +28,8 @@ struct Shader
 	{
 		glDeleteProgram(m_RendererID); // Delete shader program
 	}
+
+	unsigned int GetUniformLocation(const char* name);
+	void SetUniform4f(const char* name, Vec4f floats);
 };
 
-void SetUniform4f(Shader& shader, const char* name, Vec4f floats);
