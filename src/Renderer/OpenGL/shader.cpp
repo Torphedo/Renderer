@@ -108,5 +108,5 @@ unsigned int Shader::GetUniformLocation(const char* name)
 
 void Shader::SetUniform4f(const char* name, Vec4f floats)
 {
-    GLCall(glUniform4f(glGetUniformLocation(m_RendererID, name), floats.f1, floats.f2, floats.f3, floats.f4)); // Set color uniform
+    GLCall(glUniform4f(GetUniformLocation(name), floats.f1, floats.f2, floats.f3, floats.f4)); // Set color uniform
 }
