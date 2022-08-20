@@ -178,6 +178,7 @@
     <ClInclude Include="src\Renderer\OpenGL\VertexArray.h" />
     <ClInclude Include="src\Renderer\OpenGL\VertexBuffer.h" />
     <ClInclude Include="src\Renderer\OpenGL\VertexBufferLayout.h" />
+    <ClInclude Include="src\types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
