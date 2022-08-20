@@ -71,7 +71,7 @@ int main(void)
         while (!glfwWindowShouldClose(window))
         {
             /* Render here */
-            GLCall(glClear(GL_COLOR_BUFFER_BIT));
+            Renderer::Clear(); // Clear screen
 
 
             shader.Bind(); // Select shader
