@@ -3,7 +3,7 @@
 #include <sstream>
 #include <iostream>
 
-#include "renderer.h"
+#include "GLCore.h"
 #include "shader.h"
 
 struct ShaderProgramSource
@@ -109,4 +109,20 @@ unsigned int Shader::GetUniformLocation(const char* name)
 void Shader::SetUniform4f(const char* name, Vec4f floats)
 {
     GLCall(glUniform4f(GetUniformLocation(name), floats.f1, floats.f2, floats.f3, floats.f4)); // Set color uniform
+}
+
+
+void Shader::Bind()
+{
+    GLCall(glUseProgram(m_RendererID)); // Select shader program
+}
+
+void Shader::Unbind()
+{
+    GLCall(glUseProgram(0)); // Unbind shader program
+}
+
+void Shader::Delete()
+{
+    glDeleteProgram(m_RendererID); // Delete shader program
 }

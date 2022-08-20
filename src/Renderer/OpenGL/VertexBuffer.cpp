@@ -1,4 +1,4 @@
-#include "renderer.h"
+#include "GLCore.h"
 #include "VertexBuffer.h"
 
 void UnbindVertexBuffer()

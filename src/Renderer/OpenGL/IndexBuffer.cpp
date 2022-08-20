@@ -1,4 +1,4 @@
-#include "renderer.h"
+#include "GLCore.h"
 #include "IndexBuffer.h"
 
 void UnbindIndexBuffer()
@@ -19,7 +19,7 @@ void index_buffer::Delete()
     GLCall(glDeleteBuffers(1, &m_RendererID));
 }
 
-void index_buffer::Bind()
+void index_buffer::Bind() const
 {
     GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID)); // Bind index buffer
 

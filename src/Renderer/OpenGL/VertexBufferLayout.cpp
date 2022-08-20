@@ -1,7 +1,7 @@
 #pragma once
 
 #include "VertexBufferLayout.h"
-#include "renderer.h"
+#include "GLCore.h"
 
 #include <GL/glew.h>
 #include <vector>

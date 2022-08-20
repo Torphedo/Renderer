@@ -21,7 +21,7 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Renderer\OpenGL\renderer.cpp">
+    <ClCompile Include="src\Renderer\OpenGL\GLCore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer\OpenGL\VertexBuffer.cpp">
@@ -44,7 +44,7 @@
     <None Include="res\shaders\basic.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Renderer\OpenGL\renderer.h">
+    <ClInclude Include="src\Renderer\OpenGL\GLCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\OpenGL\VertexBuffer.h">
@@ -63,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

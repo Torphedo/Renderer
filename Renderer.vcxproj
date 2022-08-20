@@ -161,7 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Renderer\OpenGL\IndexBuffer.cpp" />
-    <ClCompile Include="src\Renderer\OpenGL\renderer.cpp" />
+    <ClCompile Include="src\Renderer\OpenGL\GLCore.cpp" />
     <ClCompile Include="src\Renderer\OpenGL\shader.cpp" />
     <ClCompile Include="src\Renderer\OpenGL\VertexArray.cpp" />
     <ClCompile Include="src\Renderer\OpenGL\VertexBuffer.cpp" />
@@ -173,11 +173,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Renderer\OpenGL\IndexBuffer.h" />
-    <ClInclude Include="src\Renderer\OpenGL\renderer.h" />
+    <ClInclude Include="src\Renderer\OpenGL\GLCore.h" />
     <ClInclude Include="src\Renderer\OpenGL\shader.h" />
     <ClInclude Include="src\Renderer\OpenGL\VertexArray.h" />
     <ClInclude Include="src\Renderer\OpenGL\VertexBuffer.h" />
     <ClInclude Include="src\Renderer\OpenGL\VertexBufferLayout.h" />
+    <ClInclude Include="src\Renderer\renderer.h" />
     <ClInclude Include="src\types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

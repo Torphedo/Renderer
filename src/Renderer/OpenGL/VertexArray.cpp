@@ -1,5 +1,5 @@
 #include "VertexArray.h"
-#include "renderer.h"
+#include "GLCore.h"
 
 vertex_array::vertex_array()
 {

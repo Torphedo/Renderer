@@ -3,12 +3,7 @@
 
 #include <iostream>
 
-#include "Renderer/OpenGL/renderer.h"
-#include "Renderer/OpenGL/shader.h"
-#include "Renderer/OpenGL/VertexArray.h"
-#include "Renderer/OpenGL/VertexBuffer.h"
-#include "Renderer/OpenGL/VertexBufferLayout.h"
-#include "Renderer/OpenGL/IndexBuffer.h"
+#include "Renderer/renderer.h"
 
 
 int main(void)
@@ -58,6 +53,7 @@ int main(void)
     {
         vertex_buffer vb; // Create vertex buffer
         vb.Fill(positions, 4 * 2 * sizeof(float)); // Populate vertex buffer
+
         vertex_array va; // Create vertex array
         vertex_buffer_layout layout; // Create layout
         Push<float>(layout, 2); // Push 2 floats to vertex layout
@@ -66,14 +62,8 @@ int main(void)
         index_buffer ib(indices, 6); // Create & populate index buffer
 
         Shader shader("res/shaders/basic.glsl");
-        shader.Bind(); // Select shader program
-
+        shader.Bind();
         shader.SetUniform4f("u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
-
-        va.Unbind(); // Unbind vertex array
-        vb.Unbind(); // Unbind vertex buffer
-        ib.Unbind(); // Unbind index buffer
-        shader.Unbind(); // Clear program selection
 
         Vec4f color = { 0.0f, 0.0f, 0.0f, 1.0f };
         float increment = 0.05f;
@@ -84,11 +74,9 @@ int main(void)
             GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
 
-            va.Bind(); // Bind vertex array
             shader.Bind(); // Select shader
             shader.SetUniform4f("u_Color", color); // Set color uniform
             vb.Bind(); // Bind vertex buffer
-            ib.Bind(); // Bind index buffer
 
             if (color.f1 > 1.0f) {
                 increment = -0.05f;
@@ -99,7 +87,7 @@ int main(void)
             color.f1 += increment;
 
             // Draw call
-            GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+            Renderer::Draw(OPENGL, va, ib, shader);
 
             /* Swap front and back buffers */
             glfwSwapBuffers(window);

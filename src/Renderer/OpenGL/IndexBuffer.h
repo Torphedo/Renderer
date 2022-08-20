@@ -7,7 +7,7 @@ struct index_buffer
 
 	index_buffer(const void* data, unsigned int count); // Run on struct init
 	void Delete();
-	void Bind();
+	void Bind() const;
 	void Unbind();
 };
 
