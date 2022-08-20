@@ -68,15 +68,14 @@ int main(void)
         Shader shader("res/shaders/basic.glsl");
         shader.Bind(); // Select shader program
 
-        GLCall(int location = glGetUniformLocation(shader.m_RendererID, "u_Color")); // Get u_Color location
-        ASSERT(location != -1); // Make sure u_Color can be found
+        SetUniform4f(shader, "u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
 
         va.Unbind(); // Unbind vertex array
         shader.Unbind(); // Clear program selection
         vb.Unbind(); // Unbind vertex buffer
         ib.Unbind(); // Unbind index buffer
 
-        float color[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
+        Vec4f color = { 0.0f, 0.0f, 0.0f, 1.0f };
         float increment = 0.05f;
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
@@ -87,17 +86,17 @@ int main(void)
 
             va.Bind(); // Bind vertex array
             shader.Bind(); // Select shader
-            GLCall(glUniform4f(location, color[0], color[1], color[2], color[3])); // Set color uniform
+            SetUniform4f(shader, "u_Color", color); // Set color uniform
             vb.Bind(); // Bind vertex buffer
             ib.Bind(); // Bind index buffer
 
-            if (color[0] > 1.0f) {
+            if (color.f1 > 1.0f) {
                 increment = -0.05f;
             }
-            else if (color[0] < 0.0f) {
+            else if (color.f1 < 0.0f) {
                 increment = 0.05f;
             }
-            color[0] += increment;
+            color.f1 += increment;
 
             // Draw call
             GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));

@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 
-bool CompileShader(unsigned int type, const std::string& source, unsigned int& id_target);
+#include <src/types.h>
+
 unsigned int CreateShader(const std::string filepath, unsigned int ID);
 
 struct Shader
@@ -28,3 +29,5 @@ struct Shader
 		glDeleteProgram(m_RendererID); // Delete shader program
 	}
 };
+
+void SetUniform4f(Shader& shader, const char* name, Vec4f floats);
