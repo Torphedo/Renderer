@@ -52,6 +52,9 @@ int main(void)
         2, 3, 0
     };
     {
+        GLCall(glEnable(GL_BLEND));
+        GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+
         vertex_array va; // Create vertex array
 
         vertex_buffer_layout layout; // Create layout
@@ -70,7 +73,7 @@ int main(void)
 
         texture texture;
         // This is a little distorted because of the difference in aspect ratio
-        CreateTexture(texture, "res/textures/xp.jpg");
+        CreateTexture(texture, "res/textures/moon.png");
         texture.Bind(0); // Bind to slot 0
         shader.SetUniform1i("u_Texture", 0);
 
