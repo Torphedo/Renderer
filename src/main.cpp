@@ -52,13 +52,14 @@ int main(void)
         2, 3, 0
     };
     {
-        vertex_buffer vb; // Create vertex buffer
-        vb.Fill(positions, 4 * 4 * sizeof(float)); // Populate vertex buffer
-
         vertex_array va; // Create vertex array
+
         vertex_buffer_layout layout; // Create layout
         Push<float>(layout, 2); // Push 2D position floats to vertex layout
         Push<float>(layout, 2); // Push texture coordinates to layout
+
+        vertex_buffer vb; // Create vertex buffer
+        vb.Fill(positions, 4 * 4 * sizeof(float)); // Populate vertex buffer
         va.AddBuffer(vb, layout); // Set vertex attributes
 
         index_buffer ib(indices, 6); // Create & populate index buffer
