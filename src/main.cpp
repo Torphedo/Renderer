@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "Renderer/renderer.h"
+#include "Renderer/texture.h"
 
 
 int main(void)
@@ -40,10 +41,10 @@ int main(void)
     std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << "\n";
 
     float positions[] = {
-        -0.5f, -0.5f,
-         0.5f, -0.5f,
-         0.5f,  0.5f,
-         -0.5f,  0.5f
+        -0.5f, -0.5f, 0.0f, 0.0f,
+         0.5f, -0.5f, 1.0f, 0.0f,
+         0.5f,  0.5f, 1.0f, 1.0f,
+         -0.5f, 0.5f, 0.0f, 1.0f
     };
 
     unsigned int indices[] = {
@@ -52,11 +53,12 @@ int main(void)
     };
     {
         vertex_buffer vb; // Create vertex buffer
-        vb.Fill(positions, 4 * 2 * sizeof(float)); // Populate vertex buffer
+        vb.Fill(positions, 4 * 4 * sizeof(float)); // Populate vertex buffer
 
         vertex_array va; // Create vertex array
         vertex_buffer_layout layout; // Create layout
-        Push<float>(layout, 2); // Push 2 floats to vertex layout
+        Push<float>(layout, 2); // Push 2D position floats to vertex layout
+        Push<float>(layout, 2); // Push texture coordinates to layout
         va.AddBuffer(vb, layout); // Set vertex attributes
 
         index_buffer ib(indices, 6); // Create & populate index buffer
@@ -64,6 +66,12 @@ int main(void)
         Shader shader("res/shaders/basic.glsl");
         shader.Bind();
         shader.SetUniform4f("u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
+
+        texture texture;
+        // This is a little distorted because of the difference in aspect ratio
+        CreateTexture(texture, "res/textures/xp.jpg");
+        texture.Bind(0); // Bind to slot 0
+        shader.SetUniform1i("u_Texture", 0);
 
         Vec4f color = { 0.0f, 0.0f, 0.0f, 1.0f };
         float increment = 0.05f;
