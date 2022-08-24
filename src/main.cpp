@@ -73,7 +73,7 @@ int main(void)
 
         texture texture;
         // This is a little distorted because of the difference in aspect ratio
-        CreateTexture(texture, "res/textures/moon.png");
+        CreateTexture(texture, "res/textures/gradient.png");
         texture.Bind(0); // Bind to slot 0
         shader.SetUniform1i("u_Texture", 0);
 
