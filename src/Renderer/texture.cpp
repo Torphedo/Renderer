@@ -21,12 +21,12 @@ void CreateTexture(texture& texture, std::string path)
 	// Initializing variables
 	texture.width = 0;
 	texture.height = 0;
-	texture.BitsPerPixel = 0;
+	texture.BytesPerPixel = 0;
 	texture.LocalBuffer = 0;
 	texture.RendererID = 0;
 
 	stbi_set_flip_vertically_on_load(1); // OpenGL expects textures to start from bottom left
-	texture.LocalBuffer = stbi_load(path.c_str(), &texture.width, &texture.height, &texture.BitsPerPixel, 4); // Load texture data into LocalBuffer
+	texture.LocalBuffer = stbi_load(path.c_str(), &texture.width, &texture.height, &texture.BytesPerPixel, 4); // Load texture data into LocalBuffer
 
 	GLCall(glGenTextures(1, &texture.RendererID)); // Generate 1 texture and store ID
 	GLCall(glBindTexture(GL_TEXTURE_2D, texture.RendererID)); // Bind texture
