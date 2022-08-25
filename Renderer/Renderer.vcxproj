@@ -172,9 +172,6 @@
     <ClCompile Include="src\Renderer\texture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\basic.glsl" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="dependencies\stb_image.h" />
     <ClInclude Include="src\Renderer\OpenGL\IndexBuffer.h" />
     <ClInclude Include="src\Renderer\OpenGL\GLCore.h" />
@@ -190,6 +187,14 @@
     <ProjectReference Include="..\vendor\GLFW\src\glfw.vcxproj">
       <Project>{7906dbc8-3e07-3ff6-aa95-82b9bfc98fc5}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\textures\gradient.png" />
+    <Image Include="res\textures\moon.png" />
+    <Image Include="res\textures\xp.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\basic.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
