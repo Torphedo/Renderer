@@ -2,3 +2,9 @@ out/
 .vs/
 .vscode/
 *.exe
+
+vendor/GLFW/src/glfw.dir/Release
+vendor/GLFW/src/CMakeFiles
+vendor/GLFW/examples/CMakeFiles
+vendor/GLFW/CMakeFiles
+vendor/GLFW/x64
