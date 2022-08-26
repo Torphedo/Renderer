@@ -6,9 +6,9 @@
 
 struct Shader
 {
-	unsigned int m_RendererID;
+	unsigned int RendererID;
 	std::string filepath;
-	std::unordered_map<std::string, int> m_UniformLocations;
+	std::unordered_map<std::string, int> UniformLocations;
 };
 
 int GetUniformLocation(Shader shader, const char* name);

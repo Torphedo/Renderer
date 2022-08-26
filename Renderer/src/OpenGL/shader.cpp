@@ -76,16 +76,16 @@ void CreateShader(const std::string filepath, Shader& shader)
 {
     auto shadersource = LoadShaderFromFile(filepath);
     shader.filepath = filepath;
-    shader.m_RendererID = glCreateProgram(); // Initialize program
+    shader.RendererID = glCreateProgram(); // Initialize program
     unsigned int vshader;
     unsigned int fshader;
     CompileShader(GL_VERTEX_SHADER, shadersource.VertexSource, vshader); // Compile individual shaders
     CompileShader(GL_FRAGMENT_SHADER, shadersource.FragmentSource, fshader);
 
-    GLCall(glAttachShader(shader.m_RendererID, vshader)); // Select shader for linking
-    GLCall(glAttachShader(shader.m_RendererID, fshader));
-    GLCall(glLinkProgram(shader.m_RendererID));           // Link into program
-    GLCall(glValidateProgram(shader.m_RendererID));       // Validate
+    GLCall(glAttachShader(shader.RendererID, vshader)); // Select shader for linking
+    GLCall(glAttachShader(shader.RendererID, fshader));
+    GLCall(glLinkProgram(shader.RendererID));           // Link into program
+    GLCall(glValidateProgram(shader.RendererID));       // Validate
 
     GLCall(glDeleteShader(vshader));
     GLCall(glDeleteShader(fshader));
@@ -94,16 +94,16 @@ void CreateShader(const std::string filepath, Shader& shader)
 
 int GetUniformLocation(Shader shader, const char* name)
 {
-    if (shader.m_UniformLocations.find(name) != shader.m_UniformLocations.end())
+    if (shader.UniformLocations.find(name) != shader.UniformLocations.end())
     {
-        return shader.m_UniformLocations[name];
+        return shader.UniformLocations[name];
     }
-    GLCall(unsigned int location = glGetUniformLocation(shader.m_RendererID, name)); // Get u_Color location
+    GLCall(unsigned int location = glGetUniformLocation(shader.RendererID, name)); // Get u_Color location
     if (location == -1) // Make sure u_Color can be found
     {
         std::cout << "Shader warning: Uniform " << name << " doesn't exist or was stripped during compilation!\n";
     }
-    shader.m_UniformLocations[name] = location;
+    shader.UniformLocations[name] = location;
     return location;
 }
 
@@ -124,7 +124,7 @@ void SetUniform4f(Shader shader, const char* name, Vec4f floats)
 
 void BindShader(Shader shader)
 {
-    GLCall(glUseProgram(shader.m_RendererID)); // Select shader program
+    GLCall(glUseProgram(shader.RendererID)); // Select shader program
 }
 
 void UnbindShader()
@@ -134,5 +134,5 @@ void UnbindShader()
 
 void DeleteShader(Shader shader)
 {
-    glDeleteProgram(shader.m_RendererID); // Delete shader program
+    glDeleteProgram(shader.RendererID); // Delete shader program
 }
