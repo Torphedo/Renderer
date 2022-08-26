@@ -2,7 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-int GraphicsAPI = 0;
+int CurrentGraphicsAPI = 0;
 
 namespace Renderer {
 
@@ -56,7 +56,10 @@ namespace Renderer {
 		glfwTerminate();
 	}
 
-
+	void SetAPI(int API)
+	{
+		CurrentGraphicsAPI = API;
+	}
 
 	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader)
 	{
@@ -75,6 +78,16 @@ namespace Renderer {
 
 	void Clear()
 	{
-		GLCall(glClear(GL_COLOR_BUFFER_BIT));
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			GLCall(glClear(GL_COLOR_BUFFER_BIT));
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			GLCall(glClear(GL_COLOR_BUFFER_BIT));
+			break;
+		}
+		return;
 	}
 }

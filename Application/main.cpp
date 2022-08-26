@@ -8,7 +8,7 @@
 
 int main(void)
 {
-    CurrentGraphicsAPI = OPENGL;
+    Renderer::SetAPI(OPENGL);
 
     Renderer::SetupWindow();
 
