@@ -389,6 +389,55 @@ namespace Renderer {
 		}
 	}
 
+	void BindTexture(texture tex, unsigned int slot)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::BindTexture(tex, slot);
+				break;
+			default:
+				OpenGL::BindTexture(tex, slot);
+				break;
+		}
+	}
+	void UnbindTexture()
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::UnbindTexture();
+				break;
+			default:
+				OpenGL::UnbindTexture();
+				break;
+		}
+	}
+	void CreateTexture(texture& texture, std::string path)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::CreateTexture(texture, path);
+				break;
+			default:
+				OpenGL::CreateTexture(texture, path);
+				break;
+		}
+	}
+	void DeleteTexture(texture& tex)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::DeleteTexture(tex);
+				break;
+			default:
+				OpenGL::DeleteTexture(tex);
+				break;
+		}
+	}
+
 
 	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader)
 	{

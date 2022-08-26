@@ -49,8 +49,8 @@ int main(void)
 
         texture texture;
         // This is a little distorted because of the difference in aspect ratio
-        CreateTexture(texture, "res/textures/gradient.png");
-        texture.Bind(0); // Bind to slot 0
+        Renderer::CreateTexture(texture, "res/textures/gradient.png");
+        Renderer::BindTexture(texture, 0); // Bind to slot 0
         Renderer::SetUniform1i(shader, "u_Texture", 0);
 
         Vec4f color = { 0.0f, 0.0f, 0.0f, 1.0f };
