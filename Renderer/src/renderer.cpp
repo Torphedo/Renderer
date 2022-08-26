@@ -63,6 +63,7 @@ namespace Renderer {
 		CurrentGraphicsAPI = API;
 	}
 
+
 	void CreateVertexBuffer(vertex_buffer& vb)
 	{
 		switch (CurrentGraphicsAPI)
@@ -250,6 +251,55 @@ namespace Renderer {
 		default:
 			// Default to OpenGL if Graphics API is out of enum's bounds
 			OpenGL::Push<unsigned char>(layout, count);
+			break;
+		}
+	}
+
+	index_buffer CreateIndexBuffer(const void* data, unsigned int count)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			return OpenGL::CreateIndexBuffer(data, count);
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			return OpenGL::CreateIndexBuffer(data, count);
+		}
+	}
+	void DeleteIndexBuffer(index_buffer& ib)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::DeleteIndexBuffer(ib);
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::DeleteIndexBuffer(ib);
+			break;
+		}
+	}
+	void BindIndexBuffer(index_buffer ib)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::BindIndexBuffer(ib);
+				break;
+			default:
+				OpenGL::BindIndexBuffer(ib);
+				break;
+		}
+	}
+	void UnbindIndexBuffer()
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::UnbindIndexBuffer();
+			break;
+		default:
+			OpenGL::UnbindIndexBuffer();
 			break;
 		}
 	}

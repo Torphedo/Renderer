@@ -35,6 +35,11 @@ namespace Renderer {
 	template<>
 	void Push<unsigned char>(vertex_buffer_layout& layout, unsigned int count);
 
+	index_buffer CreateIndexBuffer(const void* data, unsigned int count);
+	void DeleteIndexBuffer(index_buffer& ib);
+	void BindIndexBuffer(index_buffer ib);
+	void UnbindIndexBuffer();
+
 	void SetAPI(int API);
 	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader);
 	void Clear();

@@ -33,14 +33,14 @@ int main(void)
         Renderer::FillVertexBuffer(positions, 4 * 4 * sizeof(float)); // Populate vertex buffer
         
         vertex_buffer_layout layout; // Create layout
-        Renderer::Push<float>(layout, 2); // Push 2D position floats to vertex layout
         Renderer::Push<float>(layout, 2); // Push texture coordinates to layout
+        Renderer::Push<float>(layout, 2); // Push 2D position floats to vertex layout
 
         vertex_array va;           // Create vertex array ID
         Renderer::CreateVertexArray(va);     // Generate array
         Renderer::AddBuffer(va, vb, layout); // Set vertex attributes
 
-        index_buffer ib(indices, 6); // Create & populate index buffer
+        index_buffer ib = Renderer::CreateIndexBuffer(indices, 6); // Create & populate index buffer
 
         Shader shader;
         CreateShader("res/shaders/basic.glsl", shader);
@@ -85,7 +85,7 @@ int main(void)
         }
 
         DeleteShader(shader);
-        ib.Delete();  // These delete functions don't seem to be necesary
+        Renderer::DeleteIndexBuffer(ib);
         Renderer::DeleteVertexBuffer(vb);
     }
 

@@ -24,7 +24,7 @@ namespace Renderer { namespace OpenGL {
     {
         BindShader(shader);
         BindVertexArray(va);
-        ib.Bind();
+        BindIndexBuffer(ib);
 
         GLCall(glDrawElements(GL_TRIANGLES, ib.m_Count, GL_UNSIGNED_INT, nullptr));
         return;
