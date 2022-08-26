@@ -204,7 +204,6 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="renderer-api.h" />
     <ClInclude Include="src\Renderer\OpenGL\IndexBuffer.h" />
     <ClInclude Include="src\Renderer\OpenGL\GLCore.h" />
     <ClInclude Include="src\Renderer\OpenGL\shader.h" />

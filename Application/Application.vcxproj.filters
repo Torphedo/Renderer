@@ -47,9 +47,6 @@
     <ClInclude Include="src\Renderer\texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="renderer-api.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\gradient.png">
