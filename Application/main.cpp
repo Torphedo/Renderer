@@ -22,6 +22,9 @@ int main(void)
         2, 3, 0
     };
     {
+        GLCall(glEnable(GL_BLEND));
+        GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+
         vertex_buffer vb = 0;   // Initialize new vertex buffer with an ID of 0
         CreateVertexBuffer(vb); // Generate new vertex buffer
         BindVertexBuffer(vb);   // Bind buffer
