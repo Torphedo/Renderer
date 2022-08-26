@@ -212,7 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\stb_image.h" />
-    <ClInclude Include="renderer-api.h" />
     <ClInclude Include="src\OpenGL\IndexBuffer.h" />
     <ClInclude Include="src\OpenGL\GLCore.h" />
     <ClInclude Include="src\OpenGL\shader.h" />
