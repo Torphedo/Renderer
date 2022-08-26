@@ -1,14 +1,9 @@
 #pragma once
 
-struct vertex_buffer
-{
-	unsigned int m_RendererID;
-
-	vertex_buffer();
-	void Fill(const void* data, unsigned int size);
-	void Delete();
-	void Bind() const;
-	void Unbind() const;
-};
+typedef unsigned int vertex_buffer;
 
 void UnbindVertexBuffer();
+void BindVertexBuffer(vertex_buffer vb);
+void FillVertexBuffer(const void* data, unsigned int size);
+void DeleteVertexBuffer(vertex_buffer& vb);
+void CreateVertexBuffer(vertex_buffer& vb);

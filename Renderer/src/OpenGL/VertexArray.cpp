@@ -14,7 +14,7 @@ vertex_array::~vertex_array()
 void vertex_array::AddBuffer(const vertex_buffer& vb, const vertex_buffer_layout& layout)
 {
 	Bind();
-	vb.Bind(); // Bind vertex buffer
+	BindVertexBuffer(vb); // Bind vertex buffer
 	const auto& elements = layout.m_Elements; // Get layout elements
 	unsigned int offset = 0;
 	for (unsigned int i = 0; i < elements.size(); i++) // Loop through every element in the layout

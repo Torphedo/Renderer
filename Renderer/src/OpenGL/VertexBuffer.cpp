@@ -6,28 +6,23 @@ void UnbindVertexBuffer()
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0)); // Unbind vertex buffer
 }
 
-vertex_buffer::vertex_buffer()
+void BindVertexBuffer(vertex_buffer vb)
 {
-    GLCall(glGenBuffers(1, &m_RendererID)); // Generate 1 buffer
-    GLCall(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID)); // Bind vertex buffer
+    GLCall(glBindBuffer(GL_ARRAY_BUFFER, vb)); // Bind vertex buffer
 }
 
-void vertex_buffer::Fill(const void* data, unsigned int size)
+void DeleteVertexBuffer(vertex_buffer& vb)
+{
+    GLCall(glDeleteBuffers(1, &vb));
+}
+
+void FillVertexBuffer(const void* data, unsigned int size)
 {
     GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW)); // Set positions as buffer data
 }
 
-void vertex_buffer::Delete()
+void CreateVertexBuffer(vertex_buffer& vb)
 {
-    GLCall(glDeleteBuffers(1, &m_RendererID));
+    GLCall(glGenBuffers(1, &vb)); // Generate 1 buffer
 }
 
-void vertex_buffer::Bind() const
-{
-    GLCall(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID)); // Bind vertex buffer
-}
-
-void vertex_buffer::Unbind() const
-{
-    GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0)); // Bind vertex buffer
-}

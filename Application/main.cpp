@@ -22,16 +22,16 @@ int main(void)
         2, 3, 0
     };
     {
-        unsigned int test;
-        glGenTextures(1, &test);
-        vertex_array va; // Create vertex array
-
+        vertex_buffer vb = 0;   // Initialize new vertex buffer with an ID of 0
+        CreateVertexBuffer(vb); // Generate new vertex buffer
+        BindVertexBuffer(vb);   // Bind buffer
+        FillVertexBuffer(positions, 4 * 4 * sizeof(float)); // Populate vertex buffer
+        
         vertex_buffer_layout layout; // Create layout
         Push<float>(layout, 2); // Push 2D position floats to vertex layout
         Push<float>(layout, 2); // Push texture coordinates to layout
 
-        vertex_buffer vb; // Create vertex buffer
-        vb.Fill(positions, 4 * 4 * sizeof(float)); // Populate vertex buffer
+        vertex_array va; // Create vertex array
         va.AddBuffer(vb, layout); // Set vertex attributes
 
         index_buffer ib(indices, 6); // Create & populate index buffer
@@ -58,7 +58,7 @@ int main(void)
 
             BindShader(shader); // Select shader
             // SetUniform4f(shader, "u_Color", color); // Set color uniform
-            vb.Bind(); // Bind vertex buffer
+            BindVertexBuffer(vb); // Bind vertex buffer
 
             if (color.f1 > 1.0f) {
                 increment = -0.05f;
@@ -80,7 +80,7 @@ int main(void)
 
         DeleteShader(shader);
         ib.Delete();  // These delete functions don't seem to be necesary
-        vb.Delete();
+        DeleteVertexBuffer(vb);
     }
 
     Renderer::Terminate();
