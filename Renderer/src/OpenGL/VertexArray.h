@@ -1,9 +1,8 @@
 #pragma once
 
-#include "VertexBuffer.h"
+#include "src/types.h"
 #include "VertexBufferLayout.h"
 
-typedef unsigned int vertex_array;
 
 void CreateVertexArray(vertex_array& va);
 void DeleteVertexArray(vertex_array& va);

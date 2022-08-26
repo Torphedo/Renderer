@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include "OpenGL/VertexBuffer.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
 
@@ -61,6 +62,76 @@ namespace Renderer {
 		CurrentGraphicsAPI = API;
 	}
 
+	void CreateVertexBuffer(vertex_buffer& vb)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::CreateVertexBuffer(vb); // Generate 1 buffer
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::CreateVertexBuffer(vb); // Generate 1 buffer
+			break;
+		}
+	}
+
+	void DeleteVertexBuffer(vertex_buffer& vb)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::DeleteVertexBuffer(vb); // Delete vertex buffer
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::DeleteVertexBuffer(vb); // Delete vertex buffer
+			break;
+		}
+	}
+
+	void BindVertexBuffer(vertex_buffer vb)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::BindVertexBuffer(vb); // Bind vertex buffer
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::BindVertexBuffer(vb); // Bind vertex buffer
+			break;
+		}
+	}
+
+	void UnbindVertexBuffer()
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::UnbindVertexBuffer(); // Bind vertex buffer
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::UnbindVertexBuffer(); // Bind vertex buffer
+			break;
+		}
+	}
+
+	void FillVertexBuffer(const void* data, unsigned int size)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::FillVertexBuffer(data, size); // Set positions as buffer data
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::FillVertexBuffer(data, size); // Set positions as buffer data
+			break;
+		}
+	}
+
 	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader)
 	{
 		switch (CurrentGraphicsAPI)
@@ -73,7 +144,6 @@ namespace Renderer {
 			OpenGL::Draw(va, ib, shader);
 			break;
 		}
-		return;
 	}
 
 	void Clear()
@@ -81,13 +151,12 @@ namespace Renderer {
 		switch (CurrentGraphicsAPI)
 		{
 		case OPENGL:
-			GLCall(glClear(GL_COLOR_BUFFER_BIT));
+			OpenGL::Clear();
 			break;
 		default:
 			// Default to OpenGL if Graphics API is out of enum's bounds
-			GLCall(glClear(GL_COLOR_BUFFER_BIT));
+			OpenGL::Clear();
 			break;
 		}
-		return;
 	}
 }

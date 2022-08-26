@@ -29,4 +29,8 @@ namespace Renderer { namespace OpenGL {
         GLCall(glDrawElements(GL_TRIANGLES, ib.m_Count, GL_UNSIGNED_INT, nullptr));
         return;
     }
+    void Clear()
+    {
+        GLCall(glClear(GL_COLOR_BUFFER_BIT));
+    }
 }}

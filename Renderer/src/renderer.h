@@ -16,6 +16,12 @@ namespace Renderer {
 	void PollEvents();
 	void Terminate();
 
+	void CreateVertexBuffer(vertex_buffer& vb);
+	void DeleteVertexBuffer(vertex_buffer& vb);
+	void BindVertexBuffer(vertex_buffer vb);
+	void UnbindVertexBuffer();
+	void FillVertexBuffer(const void* data, unsigned int size);
+
 	void SetAPI(int API);
 	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader);
 	void Clear();

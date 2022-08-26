@@ -1,7 +1,6 @@
 #pragma once
 #include <GL/glew.h>
 #include "VertexArray.h"
-#include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
 #include "IndexBuffer.h"
 #include "../texture.h"
@@ -18,5 +17,5 @@ namespace Renderer { namespace OpenGL {
 	bool GLLogCall(const char* function, const char* file, int line);
 	void GLClearError();
 	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader);
-
+	void Clear();
 }}

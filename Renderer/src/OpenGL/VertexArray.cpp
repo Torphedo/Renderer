@@ -1,5 +1,6 @@
 #include "VertexArray.h"
 #include "GLCore.h"
+#include "src/renderer.h"
 
 void CreateVertexArray(vertex_array& va)
 {
@@ -24,7 +25,7 @@ void UnbindVertexArray()
 void AddBuffer(vertex_array va, const vertex_buffer& vb, const vertex_buffer_layout& layout)
 {
 	BindVertexArray(va);
-	BindVertexBuffer(vb); // Bind vertex buffer
+	Renderer::BindVertexBuffer(vb); // Bind vertex buffer
 	const auto& elements = layout.m_Elements; // Get layout elements
 	unsigned int offset = 0;
 	for (unsigned int i = 0; i < elements.size(); i++) // Loop through every element in the layout

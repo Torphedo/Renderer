@@ -28,9 +28,9 @@ int main(void)
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
         vertex_buffer vb = 0;   // Initialize new vertex buffer with an ID of 0
-        CreateVertexBuffer(vb); // Generate new vertex buffer
-        BindVertexBuffer(vb);   // Bind buffer
-        FillVertexBuffer(positions, 4 * 4 * sizeof(float)); // Populate vertex buffer
+        Renderer::CreateVertexBuffer(vb); // Generate new vertex buffer
+        Renderer::BindVertexBuffer(vb);   // Bind buffer
+        Renderer::FillVertexBuffer(positions, 4 * 4 * sizeof(float)); // Populate vertex buffer
         
         vertex_buffer_layout layout; // Create layout
         Push<float>(layout, 2); // Push 2D position floats to vertex layout
@@ -64,7 +64,7 @@ int main(void)
 
             BindShader(shader); // Select shader
             // SetUniform4f(shader, "u_Color", color); // Set color uniform
-            BindVertexBuffer(vb); // Bind vertex buffer
+            Renderer::BindVertexBuffer(vb); // Bind vertex buffer
 
             if (color.f1 > 1.0f) {
                 increment = -0.05f;
@@ -86,7 +86,7 @@ int main(void)
 
         DeleteShader(shader);
         ib.Delete();  // These delete functions don't seem to be necesary
-        DeleteVertexBuffer(vb);
+        Renderer::DeleteVertexBuffer(vb);
     }
 
     Renderer::Terminate();
