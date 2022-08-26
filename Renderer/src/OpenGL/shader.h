@@ -7,7 +7,10 @@
 struct Shader
 {
 	unsigned int RendererID;
-	std::string filepath;
+	std::string filepath; // Path to shader source, in case it's needed later
+	
+	// Map of uniform locations that have already been found, so that
+	// we don't need to search for the same thing multiple times
 	std::unordered_map<std::string, int> UniformLocations;
 };
 
