@@ -1,4 +1,5 @@
 #include "VertexArray.h"
+#include "VertexBuffer.h"
 #include "GLCore.h"
 #include "src/renderer.h"
 
@@ -28,7 +29,7 @@ namespace Renderer { namespace OpenGL {
 	void AddBuffer(vertex_array va, const vertex_buffer& vb, const vertex_buffer_layout& layout)
 	{
 		BindVertexArray(va);
-		Renderer::BindVertexBuffer(vb); // Bind vertex buffer
+		BindVertexBuffer(vb); // Bind vertex buffer. This uses the OpenGL function directly because we're working in OpenGL
 		const auto& elements = layout.m_Elements; // Get layout elements
 		unsigned int offset = 0;
 		for (unsigned int i = 0; i < elements.size(); i++) // Loop through every element in the layout
