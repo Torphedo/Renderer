@@ -3,9 +3,6 @@
 #include "VertexBufferLayout.h"
 #include "GLCore.h"
 
-#include <GL/glew.h>
-#include <vector>
-
 template<typename T>
 void Push(vertex_buffer_layout& layout, unsigned int count)
 {
