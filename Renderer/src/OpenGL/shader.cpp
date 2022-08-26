@@ -16,12 +16,12 @@ ShaderProgramSource LoadShaderFromFile(const std::string& filepath)
 {
     std::ifstream shader(filepath);
 
-    typedef enum
+    enum shader_type
     {
         NONE = -1, VERTEX = 0, FRAGMENT = 1
-    }shader_type;
+    };
 
-    shader_type type = NONE;
+    int type = NONE;
     std::string line;
     std::stringstream ss[2];
     while (getline(shader, line))
