@@ -132,6 +132,77 @@ namespace Renderer {
 		}
 	}
 
+	void CreateVertexArray(vertex_array& va)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::CreateVertexArray(va);
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::CreateVertexArray(va);
+			break;
+		}
+	}
+
+	void DeleteVertexArray(vertex_array& va)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::DeleteVertexArray(va);
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::DeleteVertexArray(va);
+			break;
+		}
+	}
+
+	void BindVertexArray(vertex_array va)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::BindVertexArray(va);
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::BindVertexArray(va);
+			break;
+		}
+	}
+
+	void UnbindVertexArray()
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::UnbindVertexArray();
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::UnbindVertexArray();
+			break;
+		}
+	}
+
+	void AddBuffer(vertex_array va, const vertex_buffer& vb, const vertex_buffer_layout& layout)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::AddBuffer(va, vb, layout);
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::AddBuffer(va, vb, layout);
+			break;
+		}
+	}
+
+
 	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader)
 	{
 		switch (CurrentGraphicsAPI)

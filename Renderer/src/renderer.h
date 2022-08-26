@@ -22,6 +22,12 @@ namespace Renderer {
 	void UnbindVertexBuffer();
 	void FillVertexBuffer(const void* data, unsigned int size);
 
+	void CreateVertexArray(vertex_array& va);
+	void DeleteVertexArray(vertex_array& va);
+	void BindVertexArray(vertex_array va);
+	void UnbindVertexArray();
+	void AddBuffer(vertex_array va, const vertex_buffer& vb, const vertex_buffer_layout& layout);
+
 	void SetAPI(int API);
 	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader);
 	void Clear();
