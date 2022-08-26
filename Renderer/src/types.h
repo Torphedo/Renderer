@@ -7,6 +7,3 @@ struct Vec4f
 	float f3;
 	float f4;
 };
-
-typedef unsigned int vertex_array;
-typedef unsigned int vertex_buffer;

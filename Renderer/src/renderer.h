@@ -2,6 +2,8 @@
 #include "OpenGL/GLCore.h"
 #include "src/types.h"
 #include "OpenGL/shader.h"
+#include "OpenGL/VertexBuffer.h"
+#include "OpenGL/VertexArray.h"
 
 enum API_Names
 {

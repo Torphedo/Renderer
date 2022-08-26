@@ -1,7 +1,9 @@
 #pragma once
 
-#include "src/types.h"
 #include "VertexBufferLayout.h"
+#include "VertexBuffer.h"
+
+typedef unsigned int vertex_array;
 
 namespace Renderer { namespace OpenGL {
 	// Renderer::OpenGL

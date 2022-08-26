@@ -1,5 +1,6 @@
 #pragma once
-#include "src/types.h"
+
+typedef unsigned int vertex_buffer;
 
 namespace Renderer { namespace OpenGL {
 	// Renderer::OpenGL
