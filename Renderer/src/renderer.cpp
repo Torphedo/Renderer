@@ -304,6 +304,91 @@ namespace Renderer {
 		}
 	}
 
+	void SetUniform1i(Shader shader, const char* name, int value)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::SetUniform1i(shader, name, value);
+				break;
+			default:
+				OpenGL::SetUniform1i(shader, name, value);
+				break;
+		}
+	}
+	void SetUniform1f(Shader shader, const char* name, float value)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::SetUniform1f(shader, name, value);
+				break;
+			default:
+				OpenGL::SetUniform1f(shader, name, value);
+				break;
+		}
+	}
+	void SetUniform4f(Shader shader, const char* name, Vec4f floats)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::SetUniform4f(shader, name, floats);
+				break;
+			default:
+				OpenGL::SetUniform4f(shader, name, floats);
+				break;
+		}
+	}
+	void CreateShader(const std::string filepath, Shader& shader)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::CreateShader(filepath, shader);
+				break;
+			default:
+				OpenGL::CreateShader(filepath, shader);
+				break;
+		}
+	}
+	void BindShader(Shader shader)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::BindShader(shader);
+				break;
+			default:
+				OpenGL::BindShader(shader);
+				break;
+		}
+	}
+	void UnbindShader()
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::UnbindShader();
+				break;
+			default:
+				OpenGL::UnbindShader();
+				break;
+		}
+	}
+	void DeleteShader(Shader shader)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+			case OPENGL:
+				OpenGL::DeleteShader(shader);
+				break;
+			default:
+				OpenGL::DeleteShader(shader);
+				break;
+		}
+	}
+
 
 	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader)
 	{

@@ -43,15 +43,15 @@ int main(void)
         index_buffer ib = Renderer::CreateIndexBuffer(indices, 6); // Create & populate index buffer
 
         Shader shader;
-        CreateShader("res/shaders/basic.glsl", shader);
-        BindShader(shader);
-        SetUniform4f(shader, "u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
+        Renderer::CreateShader("res/shaders/basic.glsl", shader);
+        Renderer::BindShader(shader);
+        Renderer::SetUniform4f(shader, "u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
 
         texture texture;
         // This is a little distorted because of the difference in aspect ratio
         CreateTexture(texture, "res/textures/gradient.png");
         texture.Bind(0); // Bind to slot 0
-        SetUniform1i(shader, "u_Texture", 0);
+        Renderer::SetUniform1i(shader, "u_Texture", 0);
 
         Vec4f color = { 0.0f, 0.0f, 0.0f, 1.0f };
         float increment = 0.05f;
@@ -62,7 +62,7 @@ int main(void)
             Renderer::Clear(); // Clear screen
 
 
-            BindShader(shader); // Select shader
+            Renderer::BindShader(shader); // Select shader
             // SetUniform4f(shader, "u_Color", color); // Set color uniform
             Renderer::BindVertexBuffer(vb); // Bind vertex buffer
 
@@ -84,7 +84,7 @@ int main(void)
             Renderer::PollEvents();
         }
 
-        DeleteShader(shader);
+        Renderer::DeleteShader(shader);
         Renderer::DeleteIndexBuffer(ib);
         Renderer::DeleteVertexBuffer(vb);
     }
