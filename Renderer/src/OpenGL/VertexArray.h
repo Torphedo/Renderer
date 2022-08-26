@@ -3,14 +3,10 @@
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
 
+typedef unsigned int vertex_array;
 
-struct vertex_array
-{
-	vertex_array();
-	~vertex_array();
-	void AddBuffer(const vertex_buffer& vb, const vertex_buffer_layout& layout);
-	void Bind() const;
-	void Unbind() const;
-private:
-	unsigned int m_RendererID;
-};
+void CreateVertexArray(vertex_array& va);
+void DeleteVertexArray(vertex_array& va);
+void BindVertexArray(vertex_array va);
+void UnbindVertexArray();
+void AddBuffer(vertex_array va, const vertex_buffer& vb, const vertex_buffer_layout& layout);

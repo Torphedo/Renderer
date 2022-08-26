@@ -23,7 +23,7 @@ namespace Renderer { namespace OpenGL {
     void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader)
     {
         BindShader(shader);
-        va.Bind();
+        BindVertexArray(va);
         ib.Bind();
 
         GLCall(glDrawElements(GL_TRIANGLES, ib.m_Count, GL_UNSIGNED_INT, nullptr));

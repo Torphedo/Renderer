@@ -34,8 +34,9 @@ int main(void)
         Push<float>(layout, 2); // Push 2D position floats to vertex layout
         Push<float>(layout, 2); // Push texture coordinates to layout
 
-        vertex_array va; // Create vertex array
-        va.AddBuffer(vb, layout); // Set vertex attributes
+        vertex_array va;           // Create vertex array ID
+        CreateVertexArray(va);     // Generate array
+        AddBuffer(va, vb, layout); // Set vertex attributes
 
         index_buffer ib(indices, 6); // Create & populate index buffer
 
