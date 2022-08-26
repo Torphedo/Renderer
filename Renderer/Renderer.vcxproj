@@ -27,26 +27,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -72,19 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <CopyLocalDebugSymbols>true</CopyLocalDebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <CopyLocalDebugSymbols>true</CopyLocalDebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)out\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)out\$(Configuration)\intermediates\</IntDir>
+    <CopyLocalDebugSymbols>true</CopyLocalDebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)out\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)out\$(Configuration)\intermediates\</IntDir>
+    <CopyLocalDebugSymbols>true</CopyLocalDebugSymbols>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -92,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dependencies;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor\;$(SolutionDir)vendor\GLFW\include;$(ProjectDir)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -101,6 +105,15 @@
       <AdditionalLibraryDirectories>$(ProjectDir)dependencies</AdditionalLibraryDirectories>
       <AdditionalDependencies>GLFW3.lib;glew32s.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glew32s.lib</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)vendor\</AdditionalLibraryDirectories>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -110,7 +123,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)dependencies;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor\;$(SolutionDir)vendor\GLFW\include;$(ProjectDir)</AdditionalIncludeDirectories>
       <Optimization>MaxSpeed</Optimization>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -122,6 +135,15 @@
       <AdditionalLibraryDirectories>$(ProjectDir)dependencies</AdditionalLibraryDirectories>
       <AdditionalDependencies>GLFW3.lib;glew32s.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glew32s.lib</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)vendor\</AdditionalLibraryDirectories>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -138,6 +160,15 @@
       <AdditionalLibraryDirectories>$(SolutionDir)vendor</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glew32s.lib</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)vendor\</AdditionalLibraryDirectories>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -159,34 +190,38 @@
       <AdditionalLibraryDirectories>$(SolutionDir)vendor</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glew32s.lib</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)vendor\</AdditionalLibraryDirectories>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Renderer\OpenGL\IndexBuffer.cpp" />
-    <ClCompile Include="src\Renderer\OpenGL\GLCore.cpp" />
-    <ClCompile Include="src\Renderer\OpenGL\shader.cpp" />
-    <ClCompile Include="src\Renderer\OpenGL\VertexArray.cpp" />
-    <ClCompile Include="src\Renderer\OpenGL\VertexBuffer.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Renderer\OpenGL\VertexBufferLayout.cpp" />
-    <ClCompile Include="src\Renderer\renderer.cpp" />
-    <ClCompile Include="src\Renderer\texture.cpp" />
+    <ClCompile Include="src\OpenGL\IndexBuffer.cpp" />
+    <ClCompile Include="src\OpenGL\GLCore.cpp" />
+    <ClCompile Include="src\OpenGL\shader.cpp" />
+    <ClCompile Include="src\OpenGL\VertexArray.cpp" />
+    <ClCompile Include="src\OpenGL\VertexBuffer.cpp" />
+    <ClCompile Include="src\OpenGL\VertexBufferLayout.cpp" />
+    <ClCompile Include="src\renderer.cpp" />
+    <ClCompile Include="src\texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\stb_image.h" />
-    <ClInclude Include="src\Renderer\OpenGL\IndexBuffer.h" />
-    <ClInclude Include="src\Renderer\OpenGL\GLCore.h" />
-    <ClInclude Include="src\Renderer\OpenGL\shader.h" />
-    <ClInclude Include="src\Renderer\OpenGL\VertexArray.h" />
-    <ClInclude Include="src\Renderer\OpenGL\VertexBuffer.h" />
-    <ClInclude Include="src\Renderer\OpenGL\VertexBufferLayout.h" />
-    <ClInclude Include="src\Renderer\renderer.h" />
-    <ClInclude Include="src\Renderer\texture.h" />
+    <ClInclude Include="renderer-api.h" />
+    <ClInclude Include="src\OpenGL\IndexBuffer.h" />
+    <ClInclude Include="src\OpenGL\GLCore.h" />
+    <ClInclude Include="src\OpenGL\shader.h" />
+    <ClInclude Include="src\OpenGL\VertexArray.h" />
+    <ClInclude Include="src\OpenGL\VertexBuffer.h" />
+    <ClInclude Include="src\OpenGL\VertexBufferLayout.h" />
+    <ClInclude Include="src\renderer.h" />
+    <ClInclude Include="src\texture.h" />
     <ClInclude Include="src\types.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\vendor\GLFW\src\glfw.vcxproj">
-      <Project>{7906dbc8-3e07-3ff6-aa95-82b9bfc98fc5}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\gradient.png" />
@@ -195,6 +230,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\basic.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\vendor\GLFW\src\glfw.vcxproj">
+      <Project>{7906dbc8-3e07-3ff6-aa95-82b9bfc98fc5}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

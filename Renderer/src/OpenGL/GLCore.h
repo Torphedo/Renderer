@@ -4,6 +4,7 @@
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
 #include "IndexBuffer.h"
+#include "../texture.h"
 #include "shader.h"
 
 // Break if function returns false

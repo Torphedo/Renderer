@@ -1,44 +1,16 @@
+#include <iostream>
+
+#include <vector>
+#include <string>
+#include <unordered_map>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include <iostream>
-
-#include "Renderer/renderer.h"
-#include "Renderer/texture.h"
-
+#include "src/renderer.h"
 
 int main(void)
 {
-    GLFWwindow* window;
-
-    /* Initialize the library */
-    if (!glfwInit())
-        return -1;
-
-    // Use OpenGL 3.3 on the Core profile
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(800, 800, "OpenGL Instance", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
-
-    /* Make the window's context current */
-    glfwMakeContextCurrent(window);
-
-    glfwSwapInterval(1);
-
-    if (glewInit() != GLEW_OK)
-    {
-        std::cout << "GLEW initialization failed!\n";
-    }
-
-    std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << "\n";
+    Renderer::SetupWindow();
 
     float positions[] = {
         -0.5f, -0.5f, 0.0f, 0.0f,
@@ -52,9 +24,8 @@ int main(void)
         2, 3, 0
     };
     {
-        GLCall(glEnable(GL_BLEND));
-        GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-
+        unsigned int test;
+        glGenTextures(1, &test);
         vertex_array va; // Create vertex array
 
         vertex_buffer_layout layout; // Create layout
@@ -80,7 +51,7 @@ int main(void)
         Vec4f color = { 0.0f, 0.0f, 0.0f, 1.0f };
         float increment = 0.05f;
         /* Loop until the user closes the window */
-        while (!glfwWindowShouldClose(window))
+        while (!Renderer::CloseWindow())
         {
             /* Render here */
             Renderer::Clear(); // Clear screen
@@ -102,10 +73,10 @@ int main(void)
             Renderer::Draw(OPENGL, va, ib, shader);
 
             /* Swap front and back buffers */
-            glfwSwapBuffers(window);
+            Renderer::SwapBuffers();
 
             /* Poll for and process events */
-            glfwPollEvents();
+            Renderer::PollEvents();
         }
 
         shader.Delete();
@@ -113,6 +84,6 @@ int main(void)
         vb.Delete();
     }
 
-    glfwTerminate();
+    Renderer::Terminate();
     return 0;
 }
