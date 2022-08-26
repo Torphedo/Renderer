@@ -161,7 +161,7 @@
       <AdditionalDependencies>glew32s.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32s.lib</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;opengl32.lib</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)vendor\</AdditionalLibraryDirectories>
@@ -191,7 +191,7 @@
       <AdditionalDependencies>glew32s.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32s.lib</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;opengl32.lib</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)vendor\</AdditionalLibraryDirectories>
