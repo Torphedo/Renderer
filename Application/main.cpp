@@ -36,15 +36,16 @@ int main(void)
 
         index_buffer ib(indices, 6); // Create & populate index buffer
 
-        Shader shader("res/shaders/basic.glsl");
-        shader.Bind();
-        shader.SetUniform4f("u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
+        Shader shader;
+        CreateShader("res/shaders/basic.glsl", shader);
+        BindShader(shader);
+        SetUniform4f(shader, "u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
 
         texture texture;
         // This is a little distorted because of the difference in aspect ratio
         CreateTexture(texture, "res/textures/gradient.png");
         texture.Bind(0); // Bind to slot 0
-        shader.SetUniform1i("u_Texture", 0);
+        SetUniform1i(shader, "u_Texture", 0);
 
         Vec4f color = { 0.0f, 0.0f, 0.0f, 1.0f };
         float increment = 0.05f;
@@ -55,8 +56,8 @@ int main(void)
             Renderer::Clear(); // Clear screen
 
 
-            shader.Bind(); // Select shader
-            shader.SetUniform4f("u_Color", color); // Set color uniform
+            BindShader(shader); // Select shader
+            // SetUniform4f(shader, "u_Color", color); // Set color uniform
             vb.Bind(); // Bind vertex buffer
 
             if (color.f1 > 1.0f) {
@@ -77,7 +78,7 @@ int main(void)
             Renderer::PollEvents();
         }
 
-        shader.Delete();
+        DeleteShader(shader);
         ib.Delete();  // These delete functions don't seem to be necesary
         vb.Delete();
     }

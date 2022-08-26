@@ -22,7 +22,7 @@ namespace Renderer { namespace OpenGL {
 
     void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader)
     {
-        shader.Bind();
+        BindShader(shader);
         va.Bind();
         ib.Bind();
 

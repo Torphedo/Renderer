@@ -72,67 +72,67 @@ bool CompileShader(unsigned int type, const std::string& source, unsigned int& i
     return true;
 }
 
-unsigned int CreateShader(const std::string filepath, unsigned int ID)
+void CreateShader(const std::string filepath, Shader& shader)
 {
     auto shadersource = LoadShaderFromFile(filepath);
-    ID = glCreateProgram(); // Initialize program
+    shader.filepath = filepath;
+    shader.m_RendererID = glCreateProgram(); // Initialize program
     unsigned int vshader;
     unsigned int fshader;
     CompileShader(GL_VERTEX_SHADER, shadersource.VertexSource, vshader); // Compile individual shaders
     CompileShader(GL_FRAGMENT_SHADER, shadersource.FragmentSource, fshader);
 
-    GLCall(glAttachShader(ID, vshader)); // Select shader for linking
-    GLCall(glAttachShader(ID, fshader));
-    GLCall(glLinkProgram(ID));           // Link into program
-    GLCall(glValidateProgram(ID));       // Validate
+    GLCall(glAttachShader(shader.m_RendererID, vshader)); // Select shader for linking
+    GLCall(glAttachShader(shader.m_RendererID, fshader));
+    GLCall(glLinkProgram(shader.m_RendererID));           // Link into program
+    GLCall(glValidateProgram(shader.m_RendererID));       // Validate
 
     GLCall(glDeleteShader(vshader));
     GLCall(glDeleteShader(fshader));
-    return ID;
+    return;
 }
 
-int Shader::GetUniformLocation(const char* name)
+int GetUniformLocation(Shader shader, const char* name)
 {
-    if (m_UniformLocations.find(name) != m_UniformLocations.end())
+    if (shader.m_UniformLocations.find(name) != shader.m_UniformLocations.end())
     {
-        return m_UniformLocations[name];
+        return shader.m_UniformLocations[name];
     }
-    GLCall(unsigned int location = glGetUniformLocation(m_RendererID, name)); // Get u_Color location
+    GLCall(unsigned int location = glGetUniformLocation(shader.m_RendererID, name)); // Get u_Color location
     if (location == -1) // Make sure u_Color can be found
     {
         std::cout << "Shader warning: Uniform " << name << " doesn't exist or was stripped during compilation!\n";
     }
-    m_UniformLocations[name] = location;
+    shader.m_UniformLocations[name] = location;
     return location;
 }
 
-void Shader::SetUniform1i(const char* name, int value)
+void SetUniform1i(Shader shader, const char* name, int value)
 {
-    GLCall(glUniform1i(GetUniformLocation(name), value));
+    GLCall(glUniform1i(GetUniformLocation(shader, name), value));
 }
 
-void Shader::SetUniform1f(const char* name, float value)
+void SetUniform1f(Shader shader, const char* name, float value)
 {
-    GLCall(glUniform1f(GetUniformLocation(name), value));
+    GLCall(glUniform1f(GetUniformLocation(shader, name), value));
 }
 
-void Shader::SetUniform4f(const char* name, Vec4f floats)
+void SetUniform4f(Shader shader, const char* name, Vec4f floats)
 {
-    GLCall(glUniform4f(GetUniformLocation(name), floats.f1, floats.f2, floats.f3, floats.f4));
+    GLCall(glUniform4f(GetUniformLocation(shader, name), floats.f1, floats.f2, floats.f3, floats.f4));
 }
 
-
-void Shader::Bind()
+void BindShader(Shader shader)
 {
-    GLCall(glUseProgram(m_RendererID)); // Select shader program
+    GLCall(glUseProgram(shader.m_RendererID)); // Select shader program
 }
 
-void Shader::Unbind()
+void UnbindShader()
 {
     GLCall(glUseProgram(0)); // Unbind shader program
 }
 
-void Shader::Delete()
+void DeleteShader(Shader shader)
 {
-    glDeleteProgram(m_RendererID); // Delete shader program
+    glDeleteProgram(shader.m_RendererID); // Delete shader program
 }
