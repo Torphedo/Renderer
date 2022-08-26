@@ -28,6 +28,13 @@ namespace Renderer {
 	void UnbindVertexArray();
 	void AddBuffer(vertex_array va, const vertex_buffer& vb, const vertex_buffer_layout& layout);
 
+	template<typename T>
+	void Push(vertex_buffer_layout& layout, unsigned int count);
+	template<>
+	void Push<unsigned int>(vertex_buffer_layout& layout, unsigned int count);
+	template<>
+	void Push<unsigned char>(vertex_buffer_layout& layout, unsigned int count);
+
 	void SetAPI(int API);
 	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader);
 	void Clear();

@@ -39,6 +39,7 @@ namespace Renderer {
 		}
 
 		std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << "\n";
+		return 1;
 	}
 	bool CloseWindow()
 	{
@@ -198,6 +199,57 @@ namespace Renderer {
 		default:
 			// Default to OpenGL if Graphics API is out of enum's bounds
 			OpenGL::AddBuffer(va, vb, layout);
+			break;
+		}
+	}
+
+	template<typename T>
+	void Push(vertex_buffer_layout& layout, unsigned int count)
+	{
+		static_assert(false);
+	}
+
+	template<>
+	void Push<float>(vertex_buffer_layout& layout, unsigned int count)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::Push<float>(layout, count);
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::Push<float>(layout, count);
+			break;
+		}
+	}
+
+	template<>
+	void Push<unsigned int>(vertex_buffer_layout& layout, unsigned int count)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::Push<unsigned int>(layout, count);
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::Push<unsigned int>(layout, count);
+			break;
+		}
+	}
+
+	template<>
+	void Push<unsigned char>(vertex_buffer_layout& layout, unsigned int count)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::Push<unsigned char>(layout, count);
+			break;
+		default:
+			// Default to OpenGL if Graphics API is out of enum's bounds
+			OpenGL::Push<unsigned char>(layout, count);
 			break;
 		}
 	}

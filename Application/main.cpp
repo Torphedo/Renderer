@@ -33,8 +33,8 @@ int main(void)
         Renderer::FillVertexBuffer(positions, 4 * 4 * sizeof(float)); // Populate vertex buffer
         
         vertex_buffer_layout layout; // Create layout
-        Push<float>(layout, 2); // Push 2D position floats to vertex layout
-        Push<float>(layout, 2); // Push texture coordinates to layout
+        Renderer::Push<float>(layout, 2); // Push 2D position floats to vertex layout
+        Renderer::Push<float>(layout, 2); // Push texture coordinates to layout
 
         vertex_array va;           // Create vertex array ID
         Renderer::CreateVertexArray(va);     // Generate array

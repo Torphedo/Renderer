@@ -19,11 +19,15 @@ struct vertex_buffer_layout
 	}
 };
 
-template<typename T>
-void Push(vertex_buffer_layout& layout, unsigned int count);
-template<>
-void Push<unsigned int>(vertex_buffer_layout& layout, unsigned int count);
-template<>
-void Push<unsigned char>(vertex_buffer_layout& layout, unsigned int count);
-
-unsigned int GetSizeOfGLType(unsigned int type);
+namespace Renderer { namespace OpenGL {
+	template<typename T>
+	void Push(vertex_buffer_layout& layout, unsigned int count);
+	template<>
+	void Push<float>(vertex_buffer_layout& layout, unsigned int count);
+	template<>
+	void Push<unsigned int>(vertex_buffer_layout& layout, unsigned int count);
+	template<>
+	void Push<unsigned char>(vertex_buffer_layout& layout, unsigned int count);
+	
+	unsigned int GetSizeOfGLType(unsigned int type);
+}}
