@@ -8,6 +8,8 @@
 
 int main(void)
 {
+    CurrentGraphicsAPI = OPENGL;
+
     Renderer::SetupWindow();
 
     float positions[] = {
@@ -73,7 +75,7 @@ int main(void)
             color.f1 += increment;
 
             // Draw call
-            Renderer::Draw(OPENGL, va, ib, shader);
+            Renderer::Draw(va, ib, shader);
 
             /* Swap front and back buffers */
             Renderer::SwapBuffers();

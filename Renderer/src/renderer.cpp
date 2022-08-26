@@ -2,6 +2,8 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+int GraphicsAPI = 0;
+
 namespace Renderer {
 
 	GLFWwindow* window;
@@ -56,9 +58,9 @@ namespace Renderer {
 
 
 
-	void Draw(int API, const vertex_array& va, const index_buffer& ib, Shader& shader)
+	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader)
 	{
-		switch (API)
+		switch (CurrentGraphicsAPI)
 		{
 		case OPENGL:
 			OpenGL::Draw(va, ib, shader);

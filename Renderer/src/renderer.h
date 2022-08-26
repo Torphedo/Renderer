@@ -3,7 +3,9 @@
 #include "src/types.h"
 #include "OpenGL/shader.h"
 
-enum GraphicsAPI
+extern int CurrentGraphicsAPI;
+
+enum API_Names
 {
 	OPENGL = 0
 };
@@ -16,6 +18,6 @@ namespace Renderer {
 	void PollEvents();
 	void Terminate();
 
-	void Draw(int API, const vertex_array& va, const index_buffer& ib, Shader& shader);
+	void Draw(const vertex_array& va, const index_buffer& ib, Shader& shader);
 	void Clear();
 }
