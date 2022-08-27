@@ -6,12 +6,12 @@ layout(location = 1) in vec2 TexCoord;
 
 out vec2 v_TexCoord;
 
-uniform mat4 u_MVPM;
+uniform mat4 u_ModelViewProjectionMatrix;
 
 void main()
 {
 	v_TexCoord = TexCoord;
-	gl_Position = position * u_MVPM;
+	gl_Position = position * u_ModelViewProjectionMatrix;
 };
 
 #shader fragment

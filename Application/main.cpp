@@ -50,7 +50,7 @@ int main(void)
         Renderer::CreateShader("res/shaders/basic.glsl", shader);
         Renderer::BindShader(shader);
         Renderer::SetUniform4f(shader, "u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
-        Renderer::SetUniformMat4f(shader, "u_MVPM", projection);
+        Renderer::SetUniformMat4f(shader, "u_ModelViewProjectionMatrix", projection);
 
         texture texture;
         // This is a little distorted because of the difference in aspect ratio
