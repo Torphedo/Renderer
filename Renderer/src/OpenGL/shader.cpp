@@ -137,7 +137,7 @@ namespace Renderer { namespace OpenGL {
         GLCall(glUniform4f(GetUniformLocation(shader, name), floats.f1, floats.f2, floats.f3, floats.f4));
     }
 
-    void SetUniformMat4f(Shader shader, const char* name, mat4& matrix)
+    void SetUniformMat4f(Shader shader, const char* name, mat4 matrix)
     {
         GLCall(glUniformMatrix4fv(GetUniformLocation(shader, name), 1, GL_FALSE, &matrix[0][0]));
     }

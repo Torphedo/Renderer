@@ -341,7 +341,7 @@ namespace Renderer {
 		}
 	}
 
-	void SetUniformMat4f(Shader shader, const char* name, mat4& matrix)
+	void SetUniformMat4f(Shader shader, const char* name, mat4 matrix)
 	{
 		switch (CurrentGraphicsAPI)
 		{

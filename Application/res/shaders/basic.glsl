@@ -11,7 +11,7 @@ uniform mat4 u_ModelViewProjectionMatrix;
 void main()
 {
 	v_TexCoord = TexCoord;
-	gl_Position = position * u_ModelViewProjectionMatrix;
+	gl_Position = u_ModelViewProjectionMatrix * position; // Multiplication order matters here!
 };
 
 #shader fragment
@@ -20,7 +20,6 @@ void main()
 layout(location = 0) out vec4 color;
 in vec2 v_TexCoord;
 
-uniform vec4 u_Color; // This is now unused, and will get stripped during compilation
 uniform sampler2D u_Texture;
 
 void main()

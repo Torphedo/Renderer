@@ -6,6 +6,7 @@
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#include <Windows.h>
 
 #include "src/renderer.h"
 
@@ -45,21 +46,25 @@ int main(void)
 
         index_buffer ib = Renderer::CreateIndexBuffer(indices, 6); // Create & populate index buffer
 
+        glm::mat4 projection = glm::ortho(-2.0f, 2.0f, -1.625f, 1.625f); // Orthographic projection with 16:9 aspect ratio
+        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f)); // Blank camera transform
+
         Shader shader;
-        glm::mat4 projection = glm::ortho(-2.0f, 2.0f, -1.625f, 1.625f);
         Renderer::CreateShader("res/shaders/basic.glsl", shader);
         Renderer::BindShader(shader);
-        Renderer::SetUniform4f(shader, "u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
-        Renderer::SetUniformMat4f(shader, "u_ModelViewProjectionMatrix", projection);
 
         texture texture;
-        // This is a little distorted because of the difference in aspect ratio
         Renderer::CreateTexture(texture, "res/textures/xp.jpg");
         Renderer::BindTexture(texture, 0); // Bind to slot 0
         Renderer::SetUniform1i(shader, "u_Texture", 0);
 
         Vec4f color = { 0.0f, 0.0f, 0.0f, 1.0f };
         float increment = 0.05f;
+
+        // X & Y position of the texture
+        float controlY = 0.0f;
+        float controlX = 0.0f;
+
         /* Loop until the user closes the window */
         while (!Renderer::CloseWindow())
         {
@@ -68,16 +73,35 @@ int main(void)
 
 
             Renderer::BindShader(shader); // Select shader
-            // SetUniform4f(shader, "u_Color", color); // Set color uniform
             Renderer::BindVertexBuffer(vb); // Bind vertex buffer
 
-            if (color.f1 > 1.0f) {
-                increment = -0.05f;
+            // Basic Windows code for WASD keyboard input
+            if (GetKeyState('W') & 0x8000)
+            {
+                controlY += 0.05f;
             }
-            else if (color.f1 < 0.0f) {
-                increment = 0.05f;
+
+            if (GetKeyState('S') & 0x8000)
+            {
+                controlY -= 0.05f;
             }
-            color.f1 += increment;
+
+            if (GetKeyState('A') & 0x8000)
+            {
+                controlX -= 0.05f;
+            }
+
+            if (GetKeyState('D') & 0x8000)
+            {
+                controlX += 0.05f;
+            }
+
+            // Set model translation to our custom X & Y coords. Depth is irrelevant in 2D orthographic projection.
+            glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(controlX, controlY, 0.0f));
+
+            glm::mat4 ModelViewProjectionMatrix = projection * view * model; // Create MVP matrix
+
+            Renderer::SetUniformMat4f(shader, "u_ModelViewProjectionMatrix", ModelViewProjectionMatrix); // Send matrix to shader
 
             // Draw call
             Renderer::Draw(va, ib, shader);
