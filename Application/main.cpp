@@ -4,6 +4,9 @@
 #include <string>
 #include <unordered_map>
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 #include "src/renderer.h"
 
 int main(void)
@@ -43,13 +46,15 @@ int main(void)
         index_buffer ib = Renderer::CreateIndexBuffer(indices, 6); // Create & populate index buffer
 
         Shader shader;
+        glm::mat4 projection = glm::ortho(-2.0f, 2.0f, -1.625f, 1.625f);
         Renderer::CreateShader("res/shaders/basic.glsl", shader);
         Renderer::BindShader(shader);
         Renderer::SetUniform4f(shader, "u_Color", { 0.0f, 0.0f, 0.0f, 1.0f });
+        Renderer::SetUniformMat4f(shader, "u_MVPM", projection);
 
         texture texture;
         // This is a little distorted because of the difference in aspect ratio
-        Renderer::CreateTexture(texture, "res/textures/gradient.png");
+        Renderer::CreateTexture(texture, "res/textures/xp.jpg");
         Renderer::BindTexture(texture, 0); // Bind to slot 0
         Renderer::SetUniform1i(shader, "u_Texture", 0);
 

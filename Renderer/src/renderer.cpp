@@ -21,7 +21,7 @@ namespace Renderer {
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 		/* Create a windowed mode window and its OpenGL context */
-		window = glfwCreateWindow(800, 800, "OpenGL Instance", NULL, NULL);
+		window = glfwCreateWindow(1280, 720, "OpenGL Instance", NULL, NULL);
 		if (!window)
 		{
 			glfwTerminate();
@@ -340,6 +340,20 @@ namespace Renderer {
 				break;
 		}
 	}
+
+	void SetUniformMat4f(Shader shader, const char* name, mat4& matrix)
+	{
+		switch (CurrentGraphicsAPI)
+		{
+		case OPENGL:
+			OpenGL::SetUniformMat4f(shader, name, matrix);
+			break;
+		default:
+			OpenGL::SetUniformMat4f(shader, name, matrix);
+			break;
+		}
+	}
+
 	void CreateShader(const std::string filepath, Shader& shader)
 	{
 		switch (CurrentGraphicsAPI)
