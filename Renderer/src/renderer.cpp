@@ -21,7 +21,7 @@ namespace Renderer {
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 		/* Create a windowed mode window and its OpenGL context */
-		window = glfwCreateWindow(1280, 720, "OpenGL Instance", NULL, NULL);
+		window = glfwCreateWindow(960, 540, "OpenGL Instance", NULL, NULL);
 		if (!window)
 		{
 			glfwTerminate();
