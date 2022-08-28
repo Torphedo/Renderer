@@ -50,7 +50,7 @@ int main(void)
         glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f)); // Blank camera transform
 
         Shader shader;
-        Renderer::CreateShader("res/shaders/basic.glsl", shader);
+        Renderer::CreateShader("res/shaders/basic.glsl", shader); // Load and compile shader from source file
         Renderer::BindShader(shader);
 
         texture texture;

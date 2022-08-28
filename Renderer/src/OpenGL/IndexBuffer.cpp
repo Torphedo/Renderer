@@ -6,8 +6,7 @@
 namespace Renderer { namespace OpenGL {
 	index_buffer CreateIndexBuffer(const void* data, unsigned int count)
 	{
-		index_buffer ib;
-		ib.m_Count = count;
+		index_buffer ib = {0, count}; // Initialize struct with RendererID 0 and the count value
 		GLCall(glGenBuffers(1, &ib.m_RendererID)); // Generate 1 buffer
 		GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib.m_RendererID)); // Bind index buffer
 		GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, ib.m_Count * sizeof(unsigned int), data, GL_STATIC_DRAW));

@@ -1,7 +1,6 @@
 #pragma once
 #include <GL/glew.h>
 #include "VertexArray.h"
-#include "VertexBufferLayout.h"
 #include "IndexBuffer.h"
 #include "../texture.h"
 #include "shader.h"
