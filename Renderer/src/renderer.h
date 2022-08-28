@@ -4,6 +4,7 @@
 #include "OpenGL/shader.h"
 #include "OpenGL/VertexBuffer.h"
 #include "OpenGL/VertexArray.h"
+#include "texture.h"
 
 enum API_Names
 {

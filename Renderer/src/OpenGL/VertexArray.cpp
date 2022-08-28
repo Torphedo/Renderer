@@ -1,5 +1,4 @@
 #include "VertexArray.h"
-#include "VertexBuffer.h"
 #include "GLCore.h"
 #include "src/renderer.h"
 
