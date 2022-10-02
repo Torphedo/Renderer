@@ -47,8 +47,6 @@ namespace Renderer { namespace OpenGL {
 		// Load in texture data
 		GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture.width, texture.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, texture.LocalBuffer));
 	
-		GLCall(glBindTexture(GL_TEXTURE_2D, 0));
-	
 		if (texture.LocalBuffer)
 		{
 			stbi_image_free(texture.LocalBuffer);

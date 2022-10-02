@@ -12,12 +12,13 @@ namespace Renderer {
 	int SetupWindow()
 	{
 		/* Initialize the library */
-		if (!glfwInit())
+		if (!glfwInit()) {
 			return -1;
+		}
 
 		// Use OpenGL 3.3 on the Core profile
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 		/* Create a windowed mode window and its OpenGL context */
