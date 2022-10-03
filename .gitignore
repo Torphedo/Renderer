@@ -2,6 +2,7 @@ out/
 x64/
 .vs/
 .vscode/
+.idea/
 *.exe
 
 vendor/GLFW/src/glfw.dir/Release
